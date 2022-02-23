@@ -204,10 +204,10 @@ public class Dashboard extends javax.swing.JFrame {
     
         investment = Computator.computeTotalInvestment(products);
         balance = Computator.computeTotalDebt(customers);
-        lblCurrentMoney.setText(format.format(balance));
-        lblInvestment.setText(format.format(investment));
-        lblCurrentPaid.setText(format.format(currentMoney));
-        lblProfit.setText(format.format(Computator.computeProfit(products)));
+        lblCurrentMoney.setText(format.format(balance)+" PHP");
+        lblInvestment.setText(format.format(investment)+" PHP");
+        lblCurrentPaid.setText(format.format(currentMoney)+" PHP");
+        lblProfit.setText(format.format(Computator.computeProfit(products))+" PHP");
         
     
     }
@@ -618,9 +618,9 @@ public class Dashboard extends javax.swing.JFrame {
         balance += total;
         }
         profit = Computator.computeProfit(products);
-        lblCurrentMoney.setText(format.format(balance));
-        lblProfit.setText(format.format(profit));
-        lblCurrentPaid.setText(format.format(currentMoney));
+        lblCurrentMoney.setText(format.format(balance)+" PHP");
+        lblProfit.setText(format.format(profit)+" PHP");
+        lblCurrentPaid.setText(format.format(currentMoney)+" PHP");
     }
     
     private void updateProduct(java.awt.event.KeyEvent evt){
