@@ -204,10 +204,10 @@ public class Dashboard extends javax.swing.JFrame {
     
         investment = Computator.computeTotalInvestment(products);
         balance = Computator.computeTotalDebt(customers);
-        lblCurrentMoney.setText(format.format(balance)+"PHP");
-        lblInvestment.setText(format.format(investment)+"PHP");
-        lblCurrentPaid.setText(format.format(currentMoney)+"PHP");
-        lblProfit.setText(format.format(Computator.computeProfit(products))+"PHP");
+        lblCurrentMoney.setText(format.format(balance));
+        lblInvestment.setText(format.format(investment));
+        lblCurrentPaid.setText(format.format(currentMoney));
+        lblProfit.setText(format.format(Computator.computeProfit(products)));
         
     
     }
@@ -618,9 +618,9 @@ public class Dashboard extends javax.swing.JFrame {
         balance += total;
         }
         profit = Computator.computeProfit(products);
-        lblCurrentMoney.setText(format.format(balance)+"PHP");
-        lblProfit.setText(format.format(profit)+"PHP");
-        lblCurrentPaid.setText(format.format(currentMoney)+"PHP");
+        lblCurrentMoney.setText(format.format(balance));
+        lblProfit.setText(format.format(profit));
+        lblCurrentPaid.setText(format.format(currentMoney));
     }
     
     private void updateProduct(java.awt.event.KeyEvent evt){
@@ -1829,16 +1829,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         mainTabPane.addTab("Inventory", new javax.swing.ImageIcon(getClass().getResource("/icons/Custom-Icon-Design-Flatastic-4-Inventory-maintenance-0.png")), jPanel7); // NOI18N
 
-        jPanel16.setBackground(new java.awt.Color(65, 186, 168));
+        jPanel16.setBackground(new java.awt.Color(82, 140, 159));
 
-        jPanel17.setBackground(new java.awt.Color(65, 186, 168));
+        jPanel17.setBackground(new java.awt.Color(82, 140, 159));
         jPanel17.setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel3.setText("Transaction History");
         jPanel17.add(jLabel3);
 
-        jPanel18.setBackground(new java.awt.Color(65, 186, 168));
+        jPanel18.setBackground(new java.awt.Color(82, 140, 159));
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
