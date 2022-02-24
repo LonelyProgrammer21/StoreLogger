@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -17,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import misc.Transactions;
 import products.Beer;
 import products.Products;
 import products.PureDrinks;
@@ -48,14 +50,15 @@ public class Dashboard extends javax.swing.JFrame {
     private DefaultTableModel tblCustomerModel = null;
     private DefaultTableModel tblCustomerInfoModel = null;
     private DefaultComboBoxModel cmbModel = null;
-    private DefaultTableModel tblTransactionDateModel = null;
-    private DefaultTableModel tblTransactionDetailsModel = null;
+    private DefaultTableModel tblTransactionHistoryModel = null;
+    private DefaultTableModel tblSelectedTransactHistoryModel = null;
     private DefaultComboBoxModel cmbProductListModel = null;
     private Vector modelData = null;
     
     private final DecimalFormat format = new DecimalFormat("##.##");
     private ArrayList<Products> products = null;
     private ArrayList<Customer> customers = null;
+    private HashMap<String,ArrayList<Transactions>> transactionHistory = null;
     private PriorityQueue queue = null;
     private JFileChooser fileChooser = null;
     private SpinnerNumberModel spnModel;
@@ -65,6 +68,7 @@ public class Dashboard extends javax.swing.JFrame {
     private int quantity = 1, index, customerIndex;
     private Computator compute;
     private boolean addProdAction = false;
+    
     public Dashboard() {
         
         initComponents();
@@ -112,6 +116,7 @@ public class Dashboard extends javax.swing.JFrame {
         this.products = new ArrayList<>();
         this.fileChooser = new JFileChooser();
         this.customers = new ArrayList<>();
+        transactionHistory = new HashMap<>();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
         
@@ -221,6 +226,8 @@ public class Dashboard extends javax.swing.JFrame {
         this.tblCustomerList.setModel(tblCustomerModel);
         this.cmbProductName.setModel(this.cmbProductListModel);
         tblCustomerInfo.setModel(tblCustomerInfoModel);
+        tblTransactionHistory.setModel(tblTransactionHistoryModel);
+        tblSelectedTransactHistory.setModel(tblSelectedTransactHistoryModel);
     }
     
     private void initModels(){
@@ -231,8 +238,8 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerModel = new DefaultTableModel();
         this.cmbProductListModel = new DefaultComboBoxModel<>();
         tblCustomerInfoModel = new DefaultTableModel();
-        tblTransactionDetailsModel = new DefaultTableModel();
-        tblTransactionDateModel = new DefaultTableModel();
+        tblSelectedTransactHistoryModel = new DefaultTableModel();
+        tblTransactionHistoryModel = new DefaultTableModel();
         
         lblTotalPrice.setText(format.format(total));
         cmbModel.addElement("Beer");
@@ -253,10 +260,21 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerModel.addColumn("Customer Name");
         tblCustomerModel.addColumn("Balance");
         
-        tblCustomerInfoModel.addColumn("Product Name");;
+        tblCustomerInfoModel.addColumn("Product Name");
         tblCustomerInfoModel.addColumn("Quantity");
+        
         tblCustomerInfoModel.addColumn("Price");
         tblCustomerInfoModel.addColumn("Date");
+        
+        tblTransactionHistoryModel.addColumn("Month");
+        tblTransactionHistoryModel.addColumn("Date");
+        tblTransactionHistoryModel.addColumn("Year");
+        tblSelectedTransactHistoryModel.addColumn("Product Name");
+        tblSelectedTransactHistoryModel.addColumn("Quantity");
+        tblSelectedTransactHistoryModel.addColumn("Price");
+        tblSelectedTransactHistoryModel.addColumn("Time");
+        
+        
         
         
         if(!this.products.isEmpty() || !this.customers.isEmpty()){
@@ -494,18 +512,6 @@ public class Dashboard extends javax.swing.JFrame {
         this.spnCaseQuantity.setEnabled(true);
         this.spnQuantityPerCase.setEnabled(true);
     }
-//    public void productsPaneHandler(String actionType){
-//    
-//        switch(actionType){
-//        
-//            case "ADD":
-//                
-//                this.enableWidgets();
-//                break;
-//       
-//        }
-//    
-//    }
     
     private void updateCustomerWindow(){
     
