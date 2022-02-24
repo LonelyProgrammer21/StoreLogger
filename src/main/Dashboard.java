@@ -48,6 +48,8 @@ public class Dashboard extends javax.swing.JFrame {
     private DefaultTableModel tblCustomerModel = null;
     private DefaultTableModel tblCustomerInfoModel = null;
     private DefaultComboBoxModel cmbModel = null;
+    private DefaultTableModel tblTransactionDateModel = null;
+    private DefaultTableModel tblTransactionDetailsModel = null;
     private DefaultComboBoxModel cmbProductListModel = null;
     private Vector modelData = null;
     
@@ -229,6 +231,8 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerModel = new DefaultTableModel();
         this.cmbProductListModel = new DefaultComboBoxModel<>();
         tblCustomerInfoModel = new DefaultTableModel();
+        tblTransactionDetailsModel = new DefaultTableModel();
+        tblTransactionDateModel = new DefaultTableModel();
         
         lblTotalPrice.setText(format.format(total));
         cmbModel.addElement("Beer");
@@ -490,26 +494,18 @@ public class Dashboard extends javax.swing.JFrame {
         this.spnCaseQuantity.setEnabled(true);
         this.spnQuantityPerCase.setEnabled(true);
     }
-    public void productsPaneHandler(String actionType){
-    
-        System.out.println(actionType);
-        switch(actionType){
-        
-            case "ADD":
-                
-                this.enableWidgets();
-                break;
-            case "UPDATE":
-                
-                this.haveData(actionType);
-                break;
-            case "DELETE":
-                this.haveData(actionType);
-                break;
-        
-        }
-    
-    }
+//    public void productsPaneHandler(String actionType){
+//    
+//        switch(actionType){
+//        
+//            case "ADD":
+//                
+//                this.enableWidgets();
+//                break;
+//       
+//        }
+//    
+//    }
     
     private void updateCustomerWindow(){
     
@@ -661,9 +657,9 @@ public class Dashboard extends javax.swing.JFrame {
                 }
                 
             }
+                updateProductsModel();
+                this.resetInput("PRODUCTS");
         }
-    updateProductsModel();
-    this.resetInput("PRODUCTS");
     }
     
     private void updateProductsModel(){
@@ -2030,7 +2026,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void rdbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbUpdateActionPerformed
         // TODO add your handling code here:
-        this.productsPaneHandler(this.btnGrp.getSelection().getActionCommand());
+//        this.productsPaneHandler(this.btnGrp.getSelection().getActionCommand());
         index = tblProductLists.getSelectedRow();
        
         this.resetInput("PRODUCTS");
@@ -2044,13 +2040,13 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void rdbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbAddActionPerformed
         // TODO add your handling code here:
-        this.productsPaneHandler(this.btnGrp.getSelection().getActionCommand());
+        this.enableWidgets();
         this.resetInput("PRODUCTS");
     }//GEN-LAST:event_rdbAddActionPerformed
 
     private void rdbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbDeleteActionPerformed
         // TODO add your handling code here:
-        this.productsPaneHandler(this.btnGrp.getSelection().getActionCommand());
+//        this.productsPaneHandler(this.btnGrp.getSelection().getActionCommand());
         this.resetInput("PRODUCTS");
     }//GEN-LAST:event_rdbDeleteActionPerformed
 
