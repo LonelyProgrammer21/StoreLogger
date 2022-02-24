@@ -53,7 +53,7 @@ public class Dashboard extends javax.swing.JFrame {
     private DefaultTableModel tblModel = null;
     private DefaultTableModel tblCustomerModel = null;
     private DefaultTableModel tblCustomerInfoModel = null;
-    private DefaultComboBoxModel cmbModel = null;
+    private DefaultComboBoxModel cmbModel = null, cmbDateModel;
     private DefaultTableModel tblTransactionHistoryModel = null;
     private DefaultTableModel tblSelectedTransactHistoryModel = null;
     private DefaultComboBoxModel cmbProductListModel = null;
@@ -85,6 +85,16 @@ public class Dashboard extends javax.swing.JFrame {
  
         initData();
         txtDebtInfoArea.setEditable(false);
+    }
+    
+    private void updateTransactionData(){
+    
+        lblAddedBalance.setText("");
+        lblAddedCurrentMoney.setText("");
+        lblAddedProfit.setText("");
+        tblTransactionHistoryModel.setRowCount(0);
+        tblSelectedTransactHistoryModel.setRowCount(0);
+        
     }
     
     private void updateModels(){
@@ -504,7 +514,6 @@ public class Dashboard extends javax.swing.JFrame {
                 && (int)this.spnCaseQuantity.getValue() != 0
                 && (int)this.spnQuantityPerCase.getValue() != 0)
                 return !isDuplicate();
-            case "CUSTOMERPANE":
                 
                 
         }
@@ -616,6 +625,7 @@ public class Dashboard extends javax.swing.JFrame {
         }
         txtDebtInfoArea.setText(data);
     }
+    
     
     private void getUpdatedCompute(){
     
@@ -975,6 +985,7 @@ public class Dashboard extends javax.swing.JFrame {
         lblAddedBalance = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         lblAddedProfit = new javax.swing.JLabel();
+        cmbDates = new javax.swing.JComboBox<>();
         jPanel17 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -1930,6 +1941,8 @@ public class Dashboard extends javax.swing.JFrame {
         lblAddedProfit.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblAddedProfit.setText("jLabel36");
 
+        cmbDates.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -1937,7 +1950,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
                     .addComponent(jScrollPane6)
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1955,7 +1968,10 @@ public class Dashboard extends javax.swing.JFrame {
                                     .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(lblAddedCurrentMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblAddedProfit, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cmbDates, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel18Layout.createSequentialGroup()
@@ -1971,7 +1987,9 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(61, 61, 61)
+                .addComponent(cmbDates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2452,6 +2470,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chbxisPaid;
     private javax.swing.JCheckBox chkboxCaseBuy;
+    private javax.swing.JComboBox<String> cmbDates;
     private javax.swing.JComboBox<String> cmbProductName;
     private javax.swing.JComboBox<String> cmbProductType;
     private javax.swing.JDialog dialogShowDebtList;
