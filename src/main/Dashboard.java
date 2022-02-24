@@ -27,6 +27,8 @@ import tools.DataHandler;
 import tools.LoggerClass;
 import user.Customer;
 import user.CustomerDebt;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -45,7 +47,9 @@ public class Dashboard extends javax.swing.JFrame {
     private double puhunan, tubo;
     private int caseQuantity, quantityPerCase;
     private int userChoice = 0;
+    
     private DataHandler dataHandler = null;
+    
     private DefaultTableModel tblModel = null;
     private DefaultTableModel tblCustomerModel = null;
     private DefaultTableModel tblCustomerInfoModel = null;
@@ -58,6 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
     private final DecimalFormat format = new DecimalFormat("##.##");
     private ArrayList<Products> products = null;
     private ArrayList<Customer> customers = null;
+    private ArrayList<Transactions> transactionData = null;
     private HashMap<String,ArrayList<Transactions>> transactionHistory = null;
     private PriorityQueue queue = null;
     private JFileChooser fileChooser = null;
@@ -68,6 +73,8 @@ public class Dashboard extends javax.swing.JFrame {
     private int quantity = 1, index, customerIndex;
     private Computator compute;
     private boolean addProdAction = false;
+    private final LocalDateTime time = LocalDateTime.now();
+    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("yyyy");
     
     public Dashboard() {
         
@@ -116,7 +123,9 @@ public class Dashboard extends javax.swing.JFrame {
         this.products = new ArrayList<>();
         this.fileChooser = new JFileChooser();
         this.customers = new ArrayList<>();
+        transactionData = new ArrayList<>();
         transactionHistory = new HashMap<>();
+        
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
         
@@ -267,7 +276,6 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerInfoModel.addColumn("Date");
         
         tblTransactionHistoryModel.addColumn("Month");
-        tblTransactionHistoryModel.addColumn("Date");
         tblTransactionHistoryModel.addColumn("Year");
         tblSelectedTransactHistoryModel.addColumn("Product Name");
         tblSelectedTransactHistoryModel.addColumn("Quantity");
@@ -691,6 +699,27 @@ public class Dashboard extends javax.swing.JFrame {
         tblProductLists.setModel(tblModel);
     }
   
+    private void saveTransaction(String productName, int quantity, double price){
+    
+        
+        String month = LoggerClass.months[LoggerClass.cal.get(Calendar.MONTH)];
+        int date = LoggerClass.cal.get(Calendar.DATE);
+        int year = LoggerClass.cal.get(Calendar.YEAR);
+        timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        Transactions object = new Transactions(month,date,year, 
+                timeFormatter.format(time),productName,price,quantity);
+        transactionData.add(object);
+        
+        if(transactionHistory.containsKey(month)){
+        
+            transactionHistory.get(month).add(object);
+        }else {
+        
+            transactionHistory.put(month, transactionData);
+        }
+        
+    
+    }
     private void buyItem(String productName, int itemQuantity){
         
         int remaining;
@@ -705,6 +734,7 @@ public class Dashboard extends javax.swing.JFrame {
                         remaining = e.getRemainingBottles();
                         e.setRemainingBottles(remaining - itemQuantity);
                         message = "Success!";
+                        saveTransaction(e.getProductname(),itemQuantity,total);
                         JOptionPane.showMessageDialog(null, message, "Result", JOptionPane.INFORMATION_MESSAGE);
                         
                         break;
@@ -722,6 +752,7 @@ public class Dashboard extends javax.swing.JFrame {
                        
                            e.setRemainingBottles(remaining - e.getQuantityPerCase());
                            e.setRemainingCase(e.getRemainingCase() - itemQuantity);
+                           itemQuantity = e.getQuantityPerCase();
                            
                        }else {
                        
@@ -729,6 +760,7 @@ public class Dashboard extends javax.swing.JFrame {
                            
                        }
                        message = "Success!";
+                       saveTransaction(e.getProductname(),itemQuantity,total);
                         JOptionPane.showMessageDialog(null, message, "Result", JOptionPane.INFORMATION_MESSAGE);
                        
                         break;

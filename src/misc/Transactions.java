@@ -28,14 +28,16 @@ public class Transactions {
     private String productName;
     private double price;
     private int quantity;
+    private String time;
 
-    public Transactions(String month, int date, int year, String productName, double price, int quantity) {
+    public Transactions(String month, int date, int year, String time, String productName, double price, int quantity) {
         this.month = month;
         this.date = date;
         this.year = year;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.time = time;
     }
     
     public Transactions(){}
