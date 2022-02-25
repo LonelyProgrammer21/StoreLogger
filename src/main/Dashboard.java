@@ -747,12 +747,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void updateProductsModel(){
     
         tblModel.setRowCount(0);
-        String productName;
         int remainingCase;
         for(Products e : products){
         
             modelData = new Vector();
-               productName = e.getName();
                modelData.add(e.getName());
                modelData.add(e.getProductType());
                modelData.add(format.format(e.getPricePerItem()));
@@ -779,12 +777,13 @@ public class Dashboard extends javax.swing.JFrame {
         transactionData.add(object);
         
         if(transactionHistory.containsKey(year)){
-        
+            
             transactionHistory.get(year).add(object);
         }else {
         
-            transactionHistory.put(year, transactionData);
+            transactionHistory.put(year, new ArrayList<>(transactionData));
         }
+        transactionData.clear();
         
         updateTransactionData();
     
@@ -930,9 +929,11 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
     private void updateTransactionDetailData(String month, int year){
-    
+
+        
         for(Transactions data : transactionHistory.get(year)){
         
+            System.out.println("DDDD");
             if(data.getMonth().equals(month)){
             
                 modelData = new Vector();
@@ -940,8 +941,9 @@ public class Dashboard extends javax.swing.JFrame {
                 modelData.add(format.format(data.getQuantity()));
                 modelData.add(format.format(data.getPrice()));
                 modelData.add(data.getTime());
+                tblSelectedTransactHistoryModel.addRow(modelData);
             }
-            tblSelectedTransactHistoryModel.addRow(modelData);
+            
         }
         tblSelectedTransactHistory.setModel(tblSelectedTransactHistoryModel);
     }
