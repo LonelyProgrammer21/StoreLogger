@@ -133,12 +133,14 @@ public final class DataHandler {
                 System.out.println(filePaths[i]);
                 if(!this.storeloggerFiles[i].getParentFile().exists()){
                 
-                    this.storeloggerFiles[i].getParentFile().createNewFile();
+                    this.storeloggerFiles[i].getParentFile().mkdirs();
                 }
                 if(!this.storeloggerFiles[i].exists()){
                 
                     this.storeloggerFiles[i].createNewFile();
                 }
+                
+              
                 
                 readers[i] = new BufferedReader(new FileReader(storeloggerFiles[i]));
                 writers[i] = new BufferedWriter(new FileWriter(storeloggerFiles[i],true));
