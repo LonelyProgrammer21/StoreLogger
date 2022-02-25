@@ -29,6 +29,8 @@ import user.Customer;
 import user.CustomerDebt;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -53,7 +55,8 @@ public class Dashboard extends javax.swing.JFrame {
     private DefaultTableModel tblModel = null;
     private DefaultTableModel tblCustomerModel = null;
     private DefaultTableModel tblCustomerInfoModel = null;
-    private DefaultComboBoxModel cmbModel = null, cmbDateModel;
+    private DefaultComboBoxModel cmbModel = null;
+    private DefaultComboBoxModel<Integer> cmbDatesModel;
     private DefaultTableModel tblTransactionHistoryModel = null;
     private DefaultTableModel tblSelectedTransactHistoryModel = null;
     private DefaultComboBoxModel cmbProductListModel = null;
@@ -63,7 +66,8 @@ public class Dashboard extends javax.swing.JFrame {
     private ArrayList<Products> products = null;
     private ArrayList<Customer> customers = null;
     private ArrayList<Transactions> transactionData = null;
-    private HashMap<String,ArrayList<Transactions>> transactionHistory = null;
+    private HashMap<Integer,Vector> transactionTableModels;
+    private HashMap<Integer,ArrayList<Transactions>> transactionHistory = null;
     private PriorityQueue queue = null;
     private JFileChooser fileChooser = null;
     private SpinnerNumberModel spnModel;
@@ -89,12 +93,61 @@ public class Dashboard extends javax.swing.JFrame {
     
     private void updateTransactionData(){
     
+        
         lblAddedBalance.setText("");
         lblAddedCurrentMoney.setText("");
         lblAddedProfit.setText("");
         tblTransactionHistoryModel.setRowCount(0);
         tblSelectedTransactHistoryModel.setRowCount(0);
+        cmbDates.removeAllItems();
+        Set<Integer> dates = new HashSet();
         
+        if(!transactionHistory.isEmpty()){
+            
+            
+        
+            for(int transactionDates : transactionHistory.keySet()){
+            
+                dates.add(transactionDates);
+                
+            }
+            
+          for(int retrievedDates : dates){
+          cmbDatesModel.addElement(retrievedDates);
+              modelData = new Vector();
+              for(Transactions data : transactionHistory.get(retrievedDates)){
+              
+                  
+                  if(data.getYear() == retrievedDates){
+                  
+                      modelData.add(data.getMonth());
+                      modelData.add(data.getDate());
+                      modelData.add(data.getYear());
+
+                  }
+                  
+              }
+              transactionTableModels.put(retrievedDates,modelData);
+          }
+        }
+       
+        if(cmbDatesModel.getSize() != 0){
+       
+
+            System.out.println(transactionTableModels.get(2022).size());
+            for(int i=0; i<cmbDatesModel.getSize(); i++){
+            
+                modelData = new Vector();
+                for(int j=0; j<transactionTableModels.get(cmbDatesModel.getElementAt(i)).size(); j++){
+            
+                modelData.add(transactionTableModels.get(cmbDatesModel.getElementAt(i)).get(j));
+            }
+                tblTransactionHistoryModel.addRow(modelData);
+            }
+            
+        }
+        tblTransactionHistory.setModel(tblTransactionHistoryModel);
+        cmbDates.setModel(cmbDatesModel);
     }
     
     private void getDate(){
@@ -140,7 +193,7 @@ public class Dashboard extends javax.swing.JFrame {
         this.customers = new ArrayList<>();
         transactionData = new ArrayList<>();
         transactionHistory = new HashMap<>();
-        
+        transactionTableModels = new HashMap<>();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
         
@@ -264,6 +317,7 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerInfoModel = new DefaultTableModel();
         tblSelectedTransactHistoryModel = new DefaultTableModel();
         tblTransactionHistoryModel = new DefaultTableModel();
+        cmbDatesModel = new DefaultComboBoxModel();
         
         lblTotalPrice.setText(format.format(total));
         cmbModel.addElement("Beer");
@@ -290,7 +344,9 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerInfoModel.addColumn("Price");
         tblCustomerInfoModel.addColumn("Date");
         
-        tblTransactionHistoryModel.addColumn("Date and Month");
+        tblTransactionHistoryModel.addColumn("Month");
+        tblTransactionHistoryModel.addColumn("Date");
+        tblTransactionHistoryModel.addColumn("Year");
         
         tblSelectedTransactHistoryModel.addColumn("Product Name");
         tblSelectedTransactHistoryModel.addColumn("Quantity");
@@ -725,14 +781,15 @@ public class Dashboard extends javax.swing.JFrame {
                 timeFormatter.format(time),productName,price,quantity);
         transactionData.add(object);
         
-        if(transactionHistory.containsKey(month)){
+        if(transactionHistory.containsKey(year)){
         
-            transactionHistory.get(month).add(object);
+            transactionHistory.get(year).add(object);
         }else {
         
-            transactionHistory.put(month, transactionData);
+            transactionHistory.put(year, transactionData);
         }
         
+        updateTransactionData();
     
     }
     private void buyItem(String productName, int itemQuantity){
@@ -1946,7 +2003,11 @@ public class Dashboard extends javax.swing.JFrame {
         lblAddedProfit.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblAddedProfit.setText("jLabel36");
 
-        cmbDates.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDates.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbDatesItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -2431,6 +2492,10 @@ public class Dashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_dialogShowDebtListWindowClosing
 
+    private void cmbDatesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbDatesItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDatesItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -2475,7 +2540,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chbxisPaid;
     private javax.swing.JCheckBox chkboxCaseBuy;
-    private javax.swing.JComboBox<String> cmbDates;
+    private javax.swing.JComboBox<Integer> cmbDates;
     private javax.swing.JComboBox<String> cmbProductName;
     private javax.swing.JComboBox<String> cmbProductType;
     private javax.swing.JDialog dialogShowDebtList;
