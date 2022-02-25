@@ -133,15 +133,13 @@ public class Dashboard extends javax.swing.JFrame {
        
         if(cmbDatesModel.getSize() != 0){
        
-
-            System.out.println(transactionTableModels.get(2022).size());
             for(int i=0; i<cmbDatesModel.getSize(); i++){
             
                 modelData = new Vector();
                 for(int j=0; j<transactionTableModels.get(cmbDatesModel.getElementAt(i)).size(); j++){
             
                 modelData.add(transactionTableModels.get(cmbDatesModel.getElementAt(i)).get(j));
-            }
+                }
                 tblTransactionHistoryModel.addRow(modelData);
             }
             
@@ -405,7 +403,6 @@ public class Dashboard extends javax.swing.JFrame {
         this.rdbDelete.setActionCommand("DELETE");
     }
     
-    //Use for Update, Delete Process
     private void haveData(String type){
     
             if(!this.dataHandler.hasProductData()){
@@ -930,6 +927,23 @@ public class Dashboard extends javax.swing.JFrame {
         }
         
         return item;
+    }
+    
+    private void updateTransactionDetailData(String month, int year){
+    
+        for(Transactions data : transactionHistory.get(year)){
+        
+            if(data.getMonth().equals(month)){
+            
+                modelData = new Vector();
+                modelData.add(data.getProductName());
+                modelData.add(format.format(data.getQuantity()));
+                modelData.add(format.format(data.getPrice()));
+                modelData.add(data.getTime());
+            }
+            tblSelectedTransactHistoryModel.addRow(modelData);
+        }
+        tblSelectedTransactHistory.setModel(tblSelectedTransactHistoryModel);
     }
 
     /**
@@ -1961,6 +1975,11 @@ public class Dashboard extends javax.swing.JFrame {
 
             }
         ));
+        tblTransactionHistory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTransactionHistoryMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tblTransactionHistory);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -2495,6 +2514,15 @@ public class Dashboard extends javax.swing.JFrame {
     private void cmbDatesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbDatesItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbDatesItemStateChanged
+
+    private void tblTransactionHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTransactionHistoryMouseClicked
+        // TODO add your handling code here:
+        tblSelectedTransactHistoryModel.setRowCount(0);
+        String month = tblTransactionHistory.getValueAt(tblTransactionHistory.getSelectedRow(), 0)+"";
+        int year = Integer.parseInt(tblTransactionHistory.getValueAt(tblTransactionHistory.getSelectedRow(), 2)+"");
+        updateTransactionDetailData(month,year);
+        
+    }//GEN-LAST:event_tblTransactionHistoryMouseClicked
 
     /**
      * @param args the command line arguments
