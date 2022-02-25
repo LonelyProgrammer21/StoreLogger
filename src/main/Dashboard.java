@@ -97,6 +97,11 @@ public class Dashboard extends javax.swing.JFrame {
         
     }
     
+    private void getDate(){
+    
+        
+    }
+    
     private void updateModels(){
     
         queue = new PriorityQueue();
@@ -285,8 +290,8 @@ public class Dashboard extends javax.swing.JFrame {
         tblCustomerInfoModel.addColumn("Price");
         tblCustomerInfoModel.addColumn("Date");
         
-        tblTransactionHistoryModel.addColumn("Month");
-        tblTransactionHistoryModel.addColumn("Year");
+        tblTransactionHistoryModel.addColumn("Date and Month");
+        
         tblSelectedTransactHistoryModel.addColumn("Product Name");
         tblSelectedTransactHistoryModel.addColumn("Quantity");
         tblSelectedTransactHistoryModel.addColumn("Price");
