@@ -20,7 +20,7 @@ public class LoggerClass {
     private static File logFile = null;
     private static BufferedWriter writer = null;
     public static final GregorianCalendar cal = new GregorianCalendar();
-    public static final String[] months = {"January", "Febuary", "March", "April",
+    public static final String[] months = {"January", "February", "March", "April",
     "May", "June", "July", "August", "September", "October", "November",
     "December"};
     
