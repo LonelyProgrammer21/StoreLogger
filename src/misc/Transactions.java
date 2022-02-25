@@ -39,8 +39,19 @@ public class Transactions {
         this.quantity = quantity;
         this.time = time;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
     
-    public Transactions(){}
+    public Transactions(){
+    
+        
+    }
 
     public String getProductName() {
         return productName;
