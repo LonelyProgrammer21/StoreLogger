@@ -766,7 +766,7 @@ public class Dashboard extends javax.swing.JFrame {
         tblProductLists.setModel(tblModel);
     }
   
-    private void saveTransaction(String productName, int quantity, double price){
+    private void saveTransaction(String productName, int quantity, double price, boolean isBalance){
     
         
         String month = LoggerClass.months[LoggerClass.cal.get(Calendar.MONTH)];
@@ -776,6 +776,10 @@ public class Dashboard extends javax.swing.JFrame {
         timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
         Transactions object = new Transactions(month,date,year, 
                 timeFormatter.format(time),productName,price,quantity);
+        if(isBalance){
+            
+            object.setTotalBalance(price);
+        }
         transactionData.add(object);
         
         if(transactionHistory.containsKey(year)){
@@ -787,10 +791,10 @@ public class Dashboard extends javax.swing.JFrame {
         }
         transactionData.clear();
         
-        updateTransactionData();
+        Dashboard.this.updateTransactionData();
     
     }
-    private void buyItem(String productName, int itemQuantity){
+    private void buyItem(String productName, int itemQuantity, boolean isBalance){
         
         int remaining;
         for(Products e: products){
@@ -804,7 +808,7 @@ public class Dashboard extends javax.swing.JFrame {
                         remaining = e.getRemainingBottles();
                         e.setRemainingBottles(remaining - itemQuantity);
                         message = "Success!";
-                        saveTransaction(e.getProductname(),itemQuantity,total);
+                        saveTransaction(e.getProductname(),itemQuantity,total,isBalance);
                         JOptionPane.showMessageDialog(null, message, "Result", JOptionPane.INFORMATION_MESSAGE);
                         
                         break;
@@ -830,7 +834,7 @@ public class Dashboard extends javax.swing.JFrame {
                            
                        }
                        message = "Success!";
-                       saveTransaction(e.getProductname(),itemQuantity,total);
+                       saveTransaction(e.getProductname(),itemQuantity,total, isBalance);
                         JOptionPane.showMessageDialog(null, message, "Result", JOptionPane.INFORMATION_MESSAGE);
                        
                         break;
@@ -930,12 +934,12 @@ public class Dashboard extends javax.swing.JFrame {
         return item;
     }
     
-    private void updateTransactionDetailData(String month, int year){
+    private void updateTransactionData(String month, int year){
 
-        
+        double totalBalance = 0;
+        double addedCurrentMoney = 0;
         for(Transactions data : transactionHistory.get(year)){
         
-            System.out.println("DDDD");
             if(data.getMonth().equals(month)){
             
                 modelData = new Vector();
@@ -943,10 +947,21 @@ public class Dashboard extends javax.swing.JFrame {
                 modelData.add(format.format(data.getQuantity()));
                 modelData.add(format.format(data.getPrice()));
                 modelData.add(data.getTime());
+                if(data.getTotalBalance() != 0){
+                
+                    totalBalance += data.getTotalBalance();
+                }else {
+                
+                    addedCurrentMoney += data.getPrice();
+                }
+                
                 tblSelectedTransactHistoryModel.addRow(modelData);
             }
             
         }
+        
+        lblAddedBalance.setText(format.format(totalBalance) + " Php");
+        lblAddedCurrentMoney.setText(format.format(addedCurrentMoney) + " Php");
         tblSelectedTransactHistory.setModel(tblSelectedTransactHistoryModel);
     }
 
@@ -2245,14 +2260,14 @@ public class Dashboard extends javax.swing.JFrame {
                         int indexNum = this.isCustomerExist(customerName);
                        if(indexNum != -1){
                            customers.get(indexNum).saveDebtInfo(debt);
-                           buyItem(prodName, itemQuantity);
+                           buyItem(prodName, itemQuantity, true);
                            
                        }else {
                        
                         customer.setName(customerName);
                         customer.saveDebtInfo(debt);
                         customers.add(customer);
-                        buyItem(prodName, itemQuantity);
+                        buyItem(prodName, itemQuantity, false);
                        }
                         
                        updateCustomerTable();
@@ -2267,7 +2282,7 @@ public class Dashboard extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, message, "Message",JOptionPane.INFORMATION_MESSAGE);
             }else {
             
-                buyItem(prodName, itemQuantity);
+                buyItem(prodName, itemQuantity, false);
               
             }
             
@@ -2531,7 +2546,7 @@ public class Dashboard extends javax.swing.JFrame {
         tblSelectedTransactHistoryModel.setRowCount(0);
         String month = tblTransactionHistory.getValueAt(tblTransactionHistory.getSelectedRow(), 0)+"";
         int year = Integer.parseInt(tblTransactionHistory.getValueAt(tblTransactionHistory.getSelectedRow(), 2)+"");
-        updateTransactionDetailData(month,year);
+        updateTransactionData(month,year);
         
     }//GEN-LAST:event_tblTransactionHistoryMouseClicked
 
