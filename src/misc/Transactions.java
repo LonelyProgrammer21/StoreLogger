@@ -16,6 +16,15 @@ public class Transactions {
     private int quantity;
     private double totalBalance;
     private String time;
+    private double profit;
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
+    }
 
     public Transactions(String month, int date, int year, String time, String productName, double price, int quantity) {
         this.month = month;

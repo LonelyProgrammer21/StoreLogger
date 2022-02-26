@@ -773,12 +773,21 @@ public class Dashboard extends javax.swing.JFrame {
         time = LocalDateTime.now();
         int date = LoggerClass.cal.get(Calendar.DATE);
         int year = LoggerClass.cal.get(Calendar.YEAR);
+        
         timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
         Transactions object = new Transactions(month,date,year, 
                 timeFormatter.format(time),productName,price,quantity);
         if(isBalance){
             
             object.setTotalBalance(price);
+        }else {
+        
+            selectedProduct = this.getItem(productName);
+            
+            double getProfitByQuantity = (selectedProduct.getPricePerCase() / 
+                    selectedProduct.getQuantityPerCase()) * quantity;
+            object.setProfit(getProfitByQuantity);
+            
         }
         transactionData.add(object);
         
@@ -938,6 +947,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         double totalBalance = 0;
         double addedCurrentMoney = 0;
+        double addedProfit = 0;
         for(Transactions data : transactionHistory.get(year)){
         
             if(data.getMonth().equals(month)){
@@ -954,7 +964,7 @@ public class Dashboard extends javax.swing.JFrame {
                 
                     addedCurrentMoney += data.getPrice();
                 }
-                
+                addedProfit += data.getProfit();
                 tblSelectedTransactHistoryModel.addRow(modelData);
             }
             
@@ -962,6 +972,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         lblAddedBalance.setText(format.format(totalBalance) + " Php");
         lblAddedCurrentMoney.setText(format.format(addedCurrentMoney) + " Php");
+        lblAddedProfit.setText(format.format(addedProfit) + " Php");
         tblSelectedTransactHistory.setModel(tblSelectedTransactHistoryModel);
     }
 
@@ -1608,6 +1619,7 @@ public class Dashboard extends javax.swing.JFrame {
 
             }
         ));
+        tblCustomerList.getTableHeader().setReorderingAllowed(false);
         tblCustomerList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblCustomerListMouseClicked(evt);
@@ -1878,6 +1890,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        chbxPerItem.setBackground(new java.awt.Color(111, 190, 121));
         chbxPerItem.setText("Per Item?");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
