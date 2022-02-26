@@ -76,6 +76,7 @@ public class Dashboard extends javax.swing.JFrame {
     private Customer selectedCustomer = null;
     private int quantity = 1, index, customerIndex;
     private Computator compute;
+    double exchange = 0;
     private boolean addProdAction = false;
     private LocalDateTime time = LocalDateTime.now();
     private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("yyyy");
@@ -179,7 +180,7 @@ public class Dashboard extends javax.swing.JFrame {
                 }
                 
             }
-            lblTotalPrice.setText(format.format(total));
+            lblTotalPrice.setText(format.format(total) +" Php");
         }
     }
     
@@ -286,10 +287,10 @@ public class Dashboard extends javax.swing.JFrame {
     
         investment = Computator.computeTotalInvestment(products);
         balance = Computator.computeTotalDebt(customers);
-        lblCurrentMoney.setText(format.format(balance)+" PHP");
-        lblInvestment.setText(format.format(investment)+" PHP");
-        lblCurrentPaid.setText(format.format(currentMoney)+" PHP");
-        lblProfit.setText(format.format(Computator.computeProfit(products))+" PHP");
+        lblCurrentMoney.setText(format.format(balance)+" Php");
+        lblInvestment.setText(format.format(investment)+" Php");
+        lblCurrentPaid.setText(format.format(currentMoney)+" Php");
+        lblProfit.setText(format.format(Computator.computeProfit(products))+" Php");
         
     
     }
@@ -317,7 +318,7 @@ public class Dashboard extends javax.swing.JFrame {
         tblTransactionHistoryModel = new DefaultTableModel();
         cmbDatesModel = new DefaultComboBoxModel();
         
-        lblTotalPrice.setText(format.format(total));
+        lblTotalPrice.setText(format.format(total) + "Php");
         cmbModel.addElement("Beer");
         cmbModel.addElement("Pure Drinks");
         setTableModel();
@@ -384,7 +385,7 @@ public class Dashboard extends javax.swing.JFrame {
                 this.txtCustomerMoney.setText("");
                 this.cmbProductName.setSelectedIndex(0);
                 this.lblExchange.setText("");
-                this.lblTotalPrice.setText(format.format(total));
+                this.lblTotalPrice.setText(format.format(total) + " Php");
                 this.spnBuyQuantity.setValue(1);
                 }
                 
@@ -665,7 +666,7 @@ public class Dashboard extends javax.swing.JFrame {
             total = (selectedProduct.getPricePerItem() * quantity);
         }
     
-        lblTotalPrice.setText(format.format(total));
+        lblTotalPrice.setText(format.format(total) + " Php");
     
     }
     
@@ -673,7 +674,7 @@ public class Dashboard extends javax.swing.JFrame {
     
         txtDebtInfoArea.setText("");
         String data;
-        data = "Total = " + format.format(name.getBalance()) + " PHP\n";
+        data = "Total = " + format.format(name.getBalance()) + " Php\n";
         for(CustomerDebt info : name.getDebtList()){
         
             data += "Date: " + info.getDate() +"\n";
@@ -689,16 +690,16 @@ public class Dashboard extends javax.swing.JFrame {
     
         if(!txtCustomerMoney.getText().trim().isEmpty()){
             
-            currentMoney += Double.parseDouble(lblTotalPrice.getText());
+            currentMoney += total;
            
         }
         else{
         balance += total;
         }
         profit = Computator.computeProfit(products);
-        lblCurrentMoney.setText(format.format(balance)+" PHP");
-        lblProfit.setText(format.format(profit)+" PHP");
-        lblCurrentPaid.setText(format.format(currentMoney)+" PHP");
+        lblCurrentMoney.setText(format.format(balance)+" Php");
+        lblProfit.setText(format.format(profit)+" Php");
+        lblCurrentPaid.setText(format.format(currentMoney)+" Php");
     }
     
     private void updateProduct(java.awt.event.KeyEvent evt){
@@ -1532,14 +1533,14 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(spnBuyQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(chkboxCaseBuy))
-                .addGap(25, 25, 25)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCustomerMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel19))
                 .addGap(18, 18, 18)
                 .addComponent(lblExchange, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 285, Short.MAX_VALUE))
+                .addGap(0, 286, Short.MAX_VALUE))
         );
 
         jLabel18.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -2260,7 +2261,7 @@ public class Dashboard extends javax.swing.JFrame {
                     }
                     
                 }
-            } else if(Double.parseDouble(lblExchange.getText().trim()) < 0){
+            } else if(exchange < 0){
             
                 message = "Insufficient Money";
                 JOptionPane.showMessageDialog(null, message, "Message",JOptionPane.INFORMATION_MESSAGE);
@@ -2314,14 +2315,14 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void txtCustomerMoneyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerMoneyKeyReleased
         // TODO add your handling code here:
-        double exchange = 0;
+        
         try {
         lblExchange.setText("");
             if(total != 0){
             
             double customerMoney = Double.parseDouble(txtCustomerMoney.getText().trim());
             exchange = (customerMoney - total);
-            lblExchange.setText(format.format(exchange));
+            lblExchange.setText(format.format(exchange)+" Php");
             }
             
             
