@@ -1265,7 +1265,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel30" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel29" alignment="0" pref="357" max="32767" attributes="0"/>
+                          <Component id="jLabel29" alignment="0" pref="367" max="32767" attributes="0"/>
                           <Component id="jLabel28" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel27" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel31" alignment="0" max="32767" attributes="0"/>
@@ -1284,7 +1284,7 @@
                               <Component id="jLabel29" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="291" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1456,8 +1456,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtTubo" min="-2" pref="185" max="-2" attributes="0"/>
-                              <EmptySpace pref="113" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="chbxPerItem" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTubo" min="-2" pref="185" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="103" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1469,6 +1472,8 @@
                                   <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtTubo" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="chbxPerItem" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1491,6 +1496,11 @@
                       <Events>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTuboKeyPressed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="chbxPerItem">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Per Item?"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
