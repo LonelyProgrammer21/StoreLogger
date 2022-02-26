@@ -959,7 +959,11 @@ public class Dashboard extends javax.swing.JFrame {
                 modelData = new Vector();
                 modelData.add(data.getProductName());
                 modelData.add(format.format(data.getQuantity()));
-                modelData.add(format.format(data.getPrice()));
+                if(data.getTotalBalance() != 0)
+                    modelData.add(format.format(data.getPrice())+ " (Balance)");
+                else
+                    modelData.add(format.format(data.getPrice()));
+                
                 modelData.add(data.getTime());
                 if(data.getTotalBalance() != 0){
                 
