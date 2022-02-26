@@ -77,7 +77,7 @@ public class Dashboard extends javax.swing.JFrame {
     private int quantity = 1, index, customerIndex;
     private Computator compute;
     private boolean addProdAction = false;
-    private final LocalDateTime time = LocalDateTime.now();
+    private LocalDateTime time = LocalDateTime.now();
     private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("yyyy");
     
     public Dashboard() {
@@ -769,6 +769,7 @@ public class Dashboard extends javax.swing.JFrame {
     
         
         String month = LoggerClass.months[LoggerClass.cal.get(Calendar.MONTH)];
+        time = LocalDateTime.now();
         int date = LoggerClass.cal.get(Calendar.DATE);
         int year = LoggerClass.cal.get(Calendar.YEAR);
         timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
