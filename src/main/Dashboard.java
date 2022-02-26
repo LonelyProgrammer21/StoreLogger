@@ -772,7 +772,7 @@ public class Dashboard extends javax.swing.JFrame {
         time = LocalDateTime.now();
         int date = LoggerClass.cal.get(Calendar.DATE);
         int year = LoggerClass.cal.get(Calendar.YEAR);
-        timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
         Transactions object = new Transactions(month,date,year, 
                 timeFormatter.format(time),productName,price,quantity);
         transactionData.add(object);
