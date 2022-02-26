@@ -2267,7 +2267,7 @@ public class Dashboard extends javax.swing.JFrame {
                         customer.setName(customerName);
                         customer.saveDebtInfo(debt);
                         customers.add(customer);
-                        buyItem(prodName, itemQuantity, false);
+                        buyItem(prodName, itemQuantity, true);
                        }
                         
                        updateCustomerTable();
