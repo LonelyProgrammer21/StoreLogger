@@ -478,7 +478,11 @@ public class Dashboard extends javax.swing.JFrame {
                 
             
             }
-            
+                //Override the profit if per item is selected.
+                if(chbxPerItem.isSelected()){
+                    item.setPricePerItem(tubo);
+                    item.setPricePerCase(item.getPricePerItem() * item.getcaseQuantity());
+                }
                 this.products.add(item);
                
                modelData = new Vector();
