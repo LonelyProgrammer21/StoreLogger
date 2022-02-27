@@ -2408,16 +2408,19 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void tblProductListsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblProductListsKeyPressed
         
-        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER && rdbDelete.isSelected()){
         
             message = "Are you sure you want to delete this product?";
-            var choice = JOptionPane.showConfirmDialog(null, message, "Action", JOptionPane.INFORMATION_MESSAGE);
+            var choice = JOptionPane.showConfirmDialog(null, message, "Action", 
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             index = tblProductLists.getSelectedRow();
+            
             if(choice == JOptionPane.YES_OPTION){
             
                 products.remove(index);
                 message = "The selected product is now removed.";
                 JOptionPane.showMessageDialog(null, message, "Info", JOptionPane.INFORMATION_MESSAGE);
+                tblModel.removeRow(index);
             }
             
         
