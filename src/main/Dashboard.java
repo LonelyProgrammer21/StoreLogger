@@ -948,6 +948,7 @@ public class Dashboard extends javax.swing.JFrame {
         return item;
     }
     
+    
     private void updateTransactionData(String month, int year){
 
         double totalBalance = 0;
@@ -2501,8 +2502,19 @@ public class Dashboard extends javax.swing.JFrame {
                 if(JOptionPane.showConfirmDialog(null, message,"Alert", JOptionPane.YES_NO_OPTION)
                 == JOptionPane.YES_OPTION){
         
+                String oldName = customers.get(customerIndex).getName();
                 customers.get(customerIndex).setName(newName);
                 lblCustomerName.setText(newName);
+                    System.out.println(tblCustomerModel.getRowCount());
+                for(int i=0; i<tblCustomerModel.getRowCount(); i++){
+                
+                    System.out.println(tblCustomerModel.getValueAt(i, 0));
+                    if(tblCustomerModel.getValueAt(i, 0).equals(oldName)){
+                    
+                        tblCustomerModel.setValueAt(newName, i, 0);
+                        break;
+                    }
+                }
                 
             }
         }else {
