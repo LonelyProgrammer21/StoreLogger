@@ -23,8 +23,9 @@ import user.CustomerDebt;
  */
 public final class DataHandler {
     
-    private final int ARRSIZE = 3;
-    private final String[] fileNames = {"productsFile.txt","customersDataFile.txt","storeTotalCapital.txt"};
+    private final String[] fileNames = {"productsFile.txt","customersDataFile.txt","storeTotalCapital.txt", "transactionData.txt"};
+    private final int ARRSIZE = fileNames.length;
+    
     private final BufferedWriter[] writers = new BufferedWriter[ARRSIZE];
     private final BufferedReader[] readers = new BufferedReader[ARRSIZE];
     private final File[] storeloggerFiles = new File[ARRSIZE];
@@ -63,7 +64,7 @@ public final class DataHandler {
 
                 for(int i=0; i < fileNames.length; i++){
                 
-                    filePaths[i] = System.getenv(USERENV[0])+separator+"StoreLoggerFile"+separator+fileNames[i];
+                    filePaths[i] = System.getenv(USERENV[1])+separator+"StoreLoggerFile"+separator+fileNames[i];
                 }
                initData();
             }
@@ -100,9 +101,9 @@ public final class DataHandler {
                 writers[i].flush();
         
             }
-        }catch(Exception ex){
-        
-            ex.printStackTrace();
+        }catch(IOException ex){
+            
+            
         }
         
        
