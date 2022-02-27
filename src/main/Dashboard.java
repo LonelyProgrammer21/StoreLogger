@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
@@ -2489,21 +2490,32 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnEditNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditNameActionPerformed
         // TODO add your handling code here:
         message = "Enter the new name of the customer";
-        String newName = JOptionPane.showInputDialog(null, message, "Enter name", 
-                JOptionPane.QUESTION_MESSAGE).trim().toUpperCase();
-        if(!newName.isEmpty()){
         
-            message = "Are you sure you want to change the name to " + newName +" ?";
-            if(JOptionPane.showConfirmDialog(null, message,"Alert", JOptionPane.YES_NO_OPTION)
+        try {
+        
+            String newName = JOptionPane.showInputDialog(null, message, "Enter name", 
+                JOptionPane.QUESTION_MESSAGE).trim().toUpperCase();
+            if(!newName.isEmpty()){
+        
+                message = "Are you sure you want to change the name to " + newName +" ?";
+                if(JOptionPane.showConfirmDialog(null, message,"Alert", JOptionPane.YES_NO_OPTION)
                 == JOptionPane.YES_OPTION){
         
-            customers.get(customerIndex).setName(newName);
+                customers.get(customerIndex).setName(newName);
+                lblCustomerName.setText(newName);
+                
             }
         }else {
         
             message = "Name cannot be blank.";
             JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
         }
+        }catch(HeadlessException | NullPointerException e){
+        
+            message = "Name cannot be blank.";
+            JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
         
     }//GEN-LAST:event_btnEditNameActionPerformed
 
