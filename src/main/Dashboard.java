@@ -518,7 +518,20 @@ public class Dashboard extends javax.swing.JFrame {
         String data = "";
         if(!transactionHistory.isEmpty()){
         
+            for(ArrayList<Transactions> transactions : transactionHistory.values()){
             
+               for(Transactions item : transactions){
+               
+                   data += String.format("[Product Name]: %s\n", item.getProductName());
+                   data += String.format("[Product Quantity]: %s\n", format.format(item.getQuantity()));
+                   data += String.format("[Product Price:]: %s\n", format.format(item.getPrice()));
+                   data += String.format("[Product Balance]: %s\n", format.format(item.getTotalBalance()));
+                   data += String.format("[MONTH]: %s\n", item.getMonth());
+                   data += String.format("[DATE]: %d\n", item.getDate());
+                   data += String.format("[YEAR]: %d\n", item.getYear());
+                   data += String.format("[TIME]: %s\n\n", item.getTime());
+               }
+            }
            
         }
         
@@ -2448,6 +2461,8 @@ public class Dashboard extends javax.swing.JFrame {
         
         allData.add(data);
         data = this.formatStoreCapital(investment,balance,profit,currentMoney);
+        allData.add(data);
+        data = this.getFormattedTransactionData();
         allData.add(data);
             
         this.dataHandler.updateData(allData);
