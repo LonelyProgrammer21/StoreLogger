@@ -513,6 +513,19 @@ public class Dashboard extends javax.swing.JFrame {
     
     }
     
+    private String getFormattedTransactionData(){
+    
+        String data = "";
+        if(!transactionHistory.isEmpty()){
+        
+            
+           
+        }
+        
+        
+        return data;
+    }
+    
     private String getFormattedItems(ArrayList<CustomerDebt> items){
     
         String data = "";
