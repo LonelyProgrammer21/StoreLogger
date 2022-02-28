@@ -10,7 +10,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import misc.Transactions;
 import products.Beer;
 import products.Products;
 import products.PureDrinks;
@@ -172,6 +174,13 @@ public final class DataHandler {
         
     }
     
+    public HashMap<Integer,Transactions> retrieveTransactions(){
+    
+        HashMap<Integer,Transactions> transactionCollections = new HashMap<>();
+        
+        return transactionCollections;
+    }
+    
     public ArrayList<Products> retrievedData(){
     
         ArrayList<Products> productsCollection = new ArrayList<>();
@@ -299,7 +308,7 @@ public final class DataHandler {
               }
           }
         }
-    
+        
         return customers;
     }
     
