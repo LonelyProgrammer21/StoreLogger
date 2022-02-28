@@ -202,6 +202,9 @@ public final class DataHandler {
                 transactionData.setTotalBalance(Double.parseDouble(extractedData));
                 extractedData = sc[3].nextLine();
                 extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setProfit(Double.parseDouble(extractedData));
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
                 transactionData.setMonth(extractedData);
                 extractedData = sc[3].nextLine();
                 extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();

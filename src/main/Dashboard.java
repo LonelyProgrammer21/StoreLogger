@@ -535,6 +535,7 @@ public class Dashboard extends javax.swing.JFrame {
                    data += String.format("[Product Quantity]: %s\n", format.format(item.getQuantity()));
                    data += String.format("[Product Price:]: %s\n", format.format(item.getPrice()));
                    data += String.format("[Product Balance]: %s\n", format.format(item.getTotalBalance()));
+                   data += String.format("[Product-Profit]: %s\n", format.format(item.getProfit()));
                    data += String.format("[MONTH]: %s\n", item.getMonth());
                    data += String.format("[DATE]: %d\n", item.getDate());
                    data += String.format("[YEAR]: %d\n", item.getYear());
@@ -824,11 +825,7 @@ public class Dashboard extends javax.swing.JFrame {
         
             selectedProduct = this.getItem(productName);
             
-            System.out.println(selectedProduct.getPricePerCase());
-            System.out.println(selectedProduct.getQuantityPerCase());
-            System.out.println(selectedProduct.getTubo());
             double getProfitByQuantity = selectedProduct.getItemTubo() * quantity;
-            System.out.println(getProfitByQuantity);
             object.setProfit(getProfitByQuantity);
             
         }
