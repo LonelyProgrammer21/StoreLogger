@@ -21,7 +21,6 @@ public class Computator {
     public Computator(double puhunan, double tubo, int caseQuantity, int quantityPerCase){
     
         pricePerCase = puhunan / caseQuantity;
-        pricePerCase += tubo;
         pricePerQuantity = pricePerCase / quantityPerCase;
         totalQuantity = quantityPerCase * caseQuantity;
        
