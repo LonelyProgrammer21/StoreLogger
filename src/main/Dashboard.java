@@ -257,8 +257,10 @@ public class Dashboard extends javax.swing.JFrame {
                modelData = new Vector();
                modelData.add(e.getName());
                modelData.add(e.getProductType());
-               modelData.add(format.format(e.getPricePerItem()));
-               modelData.add(format.format(e.getPricePerCase()));
+               modelData.add(format.format(e.getPricePerItem() + e.getItemTubo()));
+                System.out.println(e.getItemTubo());
+                System.out.println(e.getPricePerCase());
+               modelData.add(format.format(e.getPricePerCase() + (e.getItemTubo() * e.getQuantityPerCase())));
                remainingCase = e.getRemainingBottles() / e.getQuantityPerCase();
                e.setRemainingCase(remainingCase);
                modelData.add(e.getRemainingCase()+"");
@@ -725,7 +727,7 @@ public class Dashboard extends javax.swing.JFrame {
         }
         txtDebtInfoArea.setText(data);
     }
-    
+   
     
     private void getUpdatedCompute(){
     
@@ -843,6 +845,7 @@ public class Dashboard extends javax.swing.JFrame {
         Dashboard.this.updateTransactionData();
     
     }
+    
     private void buyItem(String productName, int itemQuantity, boolean isBalance){
         
         int remaining;
