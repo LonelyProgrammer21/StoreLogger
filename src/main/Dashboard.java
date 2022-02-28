@@ -172,7 +172,7 @@ public class Dashboard extends javax.swing.JFrame {
             
                 if(e.getName().equalsIgnoreCase(firstProduct)){
                 
-                    total = e.getPricePerItem();
+                    total = e.getPricePerItem() + e.getItemTubo();
                     break;
                 }
                 
@@ -703,10 +703,11 @@ public class Dashboard extends javax.swing.JFrame {
        selectedProduct = getItem(cmbProductName.getSelectedItem()+"");
         if(chkboxCaseBuy.isSelected()){
 
-            total = (selectedProduct.getPricePerCase()*quantity);
+            total = ((selectedProduct.getPricePerCase() + selectedProduct.getItemTubo()
+                    * selectedProduct.getQuantityPerCase()) * quantity);
         }else {
         
-            total = (selectedProduct.getPricePerItem() * quantity);
+            total = ((selectedProduct.getPricePerItem() + selectedProduct.getItemTubo()) * quantity);
         }
     
         lblTotalPrice.setText(format.format(total) + " Php");
