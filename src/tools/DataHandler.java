@@ -38,7 +38,7 @@ public final class DataHandler {
     private boolean haveError = false;
     private final boolean[] hasData = new boolean[ARRSIZE];
     private final Scanner[] sc = new Scanner[ARRSIZE];
-    
+    private String extractedData;
     public DataHandler(){
     
         this.checkData();
@@ -177,7 +177,14 @@ public final class DataHandler {
     public HashMap<Integer,Transactions> retrieveTransactions(){
     
         HashMap<Integer,Transactions> transactionCollections = new HashMap<>();
+        ArrayList<Transactions> data = new ArrayList<>();
+        Transactions transactionData = null;
         
+        while(sc[3].hasNextLine()){
+        
+            
+            
+        }
         return transactionCollections;
     }
     
@@ -213,7 +220,7 @@ public final class DataHandler {
                      continue;
                 }
                
-                String extractedData = data.substring(data.indexOf(":")+1).trim();
+                extractedData = data.substring(data.indexOf(":")+1).trim();
                 switch(count){
                     
                         case 0 -> products.setName(extractedData);
@@ -265,7 +272,7 @@ public final class DataHandler {
         ArrayList<Customer> customers = new ArrayList<>();
         boolean onItemField = false;
         Customer users = null;
-        String extractedData;
+
         while(sc[1].hasNextLine()){
         
           extractedData = sc[1].nextLine();
