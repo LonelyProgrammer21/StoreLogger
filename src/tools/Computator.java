@@ -62,7 +62,7 @@ public class Computator {
             bottleTotalQuantity = item.getQuantityPerCase() * item.getcaseQuantity();
             for(int i=item.getRemainingBottles(); i<bottleTotalQuantity; i++){
             
-                total += item.getItemTubo() / item.getquantityPerCase();
+                total += item.getItemTubo();
             }
             
         }
