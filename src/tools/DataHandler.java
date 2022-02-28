@@ -11,7 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import misc.Transactions;
 import products.Beer;
 import products.Products;
@@ -174,16 +176,68 @@ public final class DataHandler {
         
     }
     
-    public HashMap<Integer,Transactions> retrieveTransactions(){
+    public HashMap<Integer,ArrayList<Transactions>> retrieveTransactions(){
     
-        HashMap<Integer,Transactions> transactionCollections = new HashMap<>();
+        HashMap<Integer,ArrayList<Transactions>> transactionCollections = new HashMap<>();
         ArrayList<Transactions> data = new ArrayList<>();
         Transactions transactionData = null;
+        Set<Integer> yearSet = new HashSet();
         
         while(sc[3].hasNextLine()){
         
+            extractedData = sc[3].nextLine();
+            if(extractedData.startsWith("[")){
             
+                transactionData = new Transactions();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setProductName(extractedData);
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setQuantity(Integer.parseInt(extractedData));
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setPrice(Double.parseDouble(extractedData));
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setTotalBalance(Double.parseDouble(extractedData));
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setMonth(extractedData);
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setDate(Integer.parseInt(extractedData));
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setYear(Integer.parseInt(extractedData));
+                yearSet.add(Integer.parseInt(extractedData));
+                extractedData = sc[3].nextLine();
+                extractedData = extractedData.substring(extractedData.indexOf(": ")+1).trim();
+                transactionData.setTime(extractedData);
+                data.add(transactionData);
+                
+            }
             
+            for(int years : yearSet){
+            
+                ArrayList<Transactions> temp = new ArrayList<>();
+                for(Transactions e : data){
+                
+                    if(e.getYear() == years){
+                    
+                        temp.add(e);
+                    }
+                    transactionCollections.put(years, temp);
+                }
+            }
+            
+        }
+        
+        for(ArrayList<Transactions> e: transactionCollections.values()){
+        
+            for(Transactions f : e){
+            
+                System.out.println(f.getProductName());
+            }
         }
         return transactionCollections;
     }
@@ -339,6 +393,11 @@ public final class DataHandler {
     
     
         return this.hasData[2];
+    }
+    
+    public boolean hasTransactionData(){
+    
+        return this.hasData[3];
     }
     
 }
