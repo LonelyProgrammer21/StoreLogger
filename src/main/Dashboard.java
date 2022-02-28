@@ -487,6 +487,11 @@ public class Dashboard extends javax.swing.JFrame {
                 if(chbxPerItem.isSelected()){
                     item.setPricePerItem(tubo);
                     item.setPricePerCase(item.getPricePerItem() * item.getQuantityPerCase());
+                    
+                    tubo = item.getPricePerCase() % ((item.getPuhunan() / 
+                            item.getQuantityPerCase() * item.getQuantityPerCase()));
+                    tubo = tubo / item.getQuantityPerCase();
+                    item.setitemTubo(tubo);
                 }
                 this.products.add(item);
                
@@ -819,8 +824,11 @@ public class Dashboard extends javax.swing.JFrame {
         
             selectedProduct = this.getItem(productName);
             
-            double getProfitByQuantity = (selectedProduct.getPricePerCase() / 
-                    selectedProduct.getQuantityPerCase()) * quantity;
+            System.out.println(selectedProduct.getPricePerCase());
+            System.out.println(selectedProduct.getQuantityPerCase());
+            System.out.println(selectedProduct.getTubo());
+            double getProfitByQuantity = selectedProduct.getItemTubo() * quantity;
+            System.out.println(getProfitByQuantity);
             object.setProfit(getProfitByQuantity);
             
         }
