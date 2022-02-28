@@ -150,10 +150,6 @@ public class Dashboard extends javax.swing.JFrame {
         cmbDates.setModel(cmbDatesModel);
     }
     
-    private void getDate(){
-    
-        
-    }
     
     private void updateModels(){
     
@@ -230,6 +226,11 @@ public class Dashboard extends javax.swing.JFrame {
                 currentMoney = data[3];
             }
             
+            if(this.dataHandler.hasTransactionData()){
+            
+                this.transactionHistory = dataHandler.retrieveTransactions();
+            }
+            
  
         initModels();
         setModel();
@@ -248,14 +249,12 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
     private void initObjects(){
-    
-        String productName;
+
         int remainingCase;
         if(!products.isEmpty()){
             for(Products e: products){
         
                modelData = new Vector();
-               productName = e.getName();
                modelData.add(e.getName());
                modelData.add(e.getProductType());
                modelData.add(format.format(e.getPricePerItem()));
@@ -279,6 +278,11 @@ public class Dashboard extends javax.swing.JFrame {
                 modelData.addElement(format.format(user.getBalance()));
                 this.tblCustomerModel.addRow(modelData);
             }
+        }
+        
+        if(!this.transactionHistory.isEmpty()){
+        
+            this.updateTransactionData();
         }
         updateModels();
         
