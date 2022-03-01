@@ -8,7 +8,6 @@
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="2"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
-        <Property name="locationByPlatform" type="boolean" value="true"/>
         <Property name="resizable" type="boolean" value="false"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[690, 381]"/>
@@ -319,7 +318,7 @@
               <JTabbedPaneConstraints tabName="Overview">
                 <Property name="tabTitle" type="java.lang.String" value="Overview"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/money-wallet-icon.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/money-wallet-icon.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -357,7 +356,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/icons8-account-64.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/icons8-account-64.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Overview"/>
               </Properties>
@@ -444,7 +443,7 @@
                       <Font name="Dialog" size="11" style="1"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icons/icons8-unloading-of-an-item-up-arrow-navigation-24.png"/>
+                      <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/icons8-unloading-of-an-item-up-arrow-navigation-24.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Show Transactions"/>
                   </Properties>
@@ -577,7 +576,7 @@
                       <Font name="Dialog" size="11" style="1"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icons/summary.png"/>
+                      <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/summary.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Summary"/>
                   </Properties>
@@ -592,7 +591,7 @@
               <JTabbedPaneConstraints tabName="Customer Buy">
                 <Property name="tabTitle" type="java.lang.String" value="Customer Buy"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/shop-cart-icon.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/shop-cart-icon.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -889,7 +888,7 @@
                               <Font name="Dialog" size="18" style="0"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/check-1-icon.png"/>
+                              <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/check-1-icon.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Proceed"/>
                           </Properties>
@@ -906,7 +905,7 @@
                               <Font name="Dialog" size="18" style="0"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/Data-Clear-Filters-icon.png"/>
+                              <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/Data-Clear-Filters-icon.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Clear"/>
                           </Properties>
@@ -942,7 +941,7 @@
               <JTabbedPaneConstraints tabName="Debt List">
                 <Property name="tabTitle" type="java.lang.String" value="Debt List"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/payment-icon.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/payment-icon.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -1089,7 +1088,7 @@
                   <Font name="Dialog" size="11" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/search.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Find"/>
               </Properties>
@@ -1118,7 +1117,7 @@
               <JTabbedPaneConstraints tabName="Inventory">
                 <Property name="tabTitle" type="java.lang.String" value="Inventory"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/Custom-Icon-Design-Flatastic-4-Inventory-maintenance-0.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/Custom-Icon-Design-Flatastic-4-Inventory-maintenance-0.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -1580,7 +1579,7 @@
               <JTabbedPaneConstraints tabName="Transaction History">
                 <Property name="tabTitle" type="java.lang.String" value="Transaction History"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/history.png"/>
+                  <Image iconType="2" name="/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/history.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>

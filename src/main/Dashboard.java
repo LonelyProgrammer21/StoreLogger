@@ -84,9 +84,9 @@ public class Dashboard extends javax.swing.JFrame {
     
     public Dashboard() {
         
-        initComponents();
-        Image icon = new ImageIcon("resources/icons/store.png").getImage();
+        Image icon = new ImageIcon("store.png").getImage();
         this.setIconImage(icon);
+        initComponents();
         this.setActionCommands();
  
         initData();
@@ -1150,7 +1150,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         dialogShowDebtList.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogShowDebtList.setAlwaysOnTop(true);
-        dialogShowDebtList.setLocationByPlatform(true);
         dialogShowDebtList.setResizable(false);
         dialogShowDebtList.setSize(new java.awt.Dimension(690, 381));
         dialogShowDebtList.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1312,7 +1311,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-account-64.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/icons8-account-64.png")); // NOI18N
         jLabel1.setText("Overview");
 
         jPanel4.setBackground(new java.awt.Color(210, 231, 244));
@@ -1327,7 +1326,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-unloading-of-an-item-up-arrow-navigation-24.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/icons8-unloading-of-an-item-up-arrow-navigation-24.png")); // NOI18N
         jButton1.setText("Show Transactions");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1389,7 +1388,7 @@ public class Dashboard extends javax.swing.JFrame {
         lblProfit.setText("jLabel9");
 
         btnSummary.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        btnSummary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/summary.png"))); // NOI18N
+        btnSummary.setIcon(new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/summary.png")); // NOI18N
         btnSummary.setText("Summary");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1456,7 +1455,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        mainTabPane.addTab("Overview", new javax.swing.ImageIcon(getClass().getResource("/icons/money-wallet-icon.png")), jPanel2); // NOI18N
+        mainTabPane.addTab("Overview", new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/money-wallet-icon.png"), jPanel2); // NOI18N
 
         jPanel6.setBackground(new java.awt.Color(172, 203, 206));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer Buy"));
@@ -1530,7 +1529,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnPlaceOrder.setBackground(new java.awt.Color(144, 238, 154));
         btnPlaceOrder.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnPlaceOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/check-1-icon.png"))); // NOI18N
+        btnPlaceOrder.setIcon(new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/check-1-icon.png")); // NOI18N
         btnPlaceOrder.setText("Proceed");
         btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1541,7 +1540,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(238, 58, 88));
         jButton3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Data-Clear-Filters-icon.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/Data-Clear-Filters-icon.png")); // NOI18N
         jButton3.setText("Clear");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1653,7 +1652,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
         );
 
-        mainTabPane.addTab("Customer Buy", new javax.swing.ImageIcon(getClass().getResource("/icons/shop-cart-icon.png")), jPanel1); // NOI18N
+        mainTabPane.addTab("Customer Buy", new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/shop-cart-icon.png"), jPanel1); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(134, 187, 194));
 
@@ -1697,7 +1696,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel17.setText("Information:");
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/search.png")); // NOI18N
         jButton2.setText("Find");
 
         lblFindStatus.setFont(new java.awt.Font("Dialog", 3, 11)); // NOI18N
@@ -1752,7 +1751,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(202, Short.MAX_VALUE))
         );
 
-        mainTabPane.addTab("Debt List", new javax.swing.ImageIcon(getClass().getResource("/icons/payment-icon.png")), jPanel3); // NOI18N
+        mainTabPane.addTab("Debt List", new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/payment-icon.png"), jPanel3); // NOI18N
 
         jPanel7.setBackground(new java.awt.Color(111, 190, 121));
 
@@ -2038,7 +2037,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(129, 129, 129))
         );
 
-        mainTabPane.addTab("Inventory", new javax.swing.ImageIcon(getClass().getResource("/icons/Custom-Icon-Design-Flatastic-4-Inventory-maintenance-0.png")), jPanel7); // NOI18N
+        mainTabPane.addTab("Inventory", new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/Custom-Icon-Design-Flatastic-4-Inventory-maintenance-0.png"), jPanel7); // NOI18N
 
         jPanel16.setBackground(new java.awt.Color(82, 140, 159));
 
@@ -2209,7 +2208,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        mainTabPane.addTab("Transaction History", new javax.swing.ImageIcon(getClass().getResource("/icons/history.png")), jPanel16); // NOI18N
+        mainTabPane.addTab("Transaction History", new javax.swing.ImageIcon("/home/lonelyprogrammer/NetbeansProjects/StoreLogger/resources/icons/history.png"), jPanel16); // NOI18N
 
         jMenu1.setText("File");
 
